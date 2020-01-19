@@ -75,7 +75,8 @@ spec:
       serviceAccountName: jenkins
       containers:  
       - name: jenkins
-        image: jenkins/jenkins:lts-alpine
+#       image: jenkins/jenkins:lts-alpine
+        image: jenkinsci/blueocean:latest
         imagePullPolicy: IfNotPresent  
         ports:  
         - containerPort: 8080  
