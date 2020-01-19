@@ -2,7 +2,7 @@ podTemplate {
     node(POD_LABEL) {
         stage('Run shell') {
             sh 'echo hello world'
-			sh 'sleep 60'
+	    sh 'sleep 60'
         }
     }
 }
