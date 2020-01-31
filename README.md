@@ -25,7 +25,7 @@ kubernetes 集群之中，我们正是利用这一容器平台来实现 jenkins 
 # 二、部署 jenkins
 我们把 master 节点部署到 k8s 集群中，大家可以参照 [官方 github 文档](https://github.com/jenkinsci/kubernetes-plugin)进行配置，我这里进行了一点简化，我这里使用的是 nfs 来存储 jenkins 的数据，用于进行持久存储。
 ```
-kubectl apply -f https://raw.githubusercontent.com/wangzan18/jenkins-cicd/master/master/jenkins.yaml
+kubectl apply -f https://raw.githubusercontent.com/wangzan18/jenkins-agent-k8s-cicd/master/master/jenkins.yaml
 ```
 
 说明一下：这里 Service 我们暴漏了端口 8080 和 50000，8080 为访问 Jenkins Server 页面端口，50000 为创建的 Jenkins Slave 与 Master 建立连接进行通信的默认端口，如果不暴露的话，Slave 无法跟 Master 建立连接。这里使用 NodePort 方式暴漏端口，并未指定其端口号，由 Kubernetes 系统默认分配，当然也可以指定不重复的端口号（范围在 30000~32767）。
@@ -58,7 +58,7 @@ podTemplate {
     node(POD_LABEL) {
         stage('Run shell') {
             sh 'echo hello world'
-						sh 'sleep 60'
+	    sh 'sleep 60'
         }
     }
 }
@@ -183,7 +183,7 @@ The `containerTemplate` is a template of container that will be added to the pod
 * 当 jenkins 数据丢失，也不会丢掉 pipeline。
 
 使用 SCM ，就需要我们把上面所写的 pipeline 代码放到 Jenkinsfile，一般是这个名字，当然也可以自定义名称，我们把上面第一个案例使用 SCM 运行一下，首先就是修改我们的 job。
-我的 jenkinsfile 地址为 https://github.com/wangzan18/jenkins-cicd/blob/master/jenkinsfile/jenkins-pipeline-podtemplate.jenkinsfile 。
+我的 jenkinsfile 地址为 https://github.com/wangzan18/jenkins-agent-k8s-cicd/blob/master/jenkinsfile/jenkins-pipeline-podtemplate.jenkinsfile 。
 
 ![](https://s1.51cto.com/images/blog/202001/16/d606e1ecb6dbb996047cdbbaa6a182e7.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
 
