@@ -40,7 +40,7 @@ metadata:
 spec:
   selector:
     app: jenkins
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - name: http
     port: 8080
@@ -123,13 +123,13 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip
 spec:
   rules:
-    - http:
-        paths:
-          - path: /*
-            pathType: *
-            backend:
-              service: 
-                name: jenkins
-                port:
-                  name: http
-                  number: 80
+  - host: "jenkins.wzlinux.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: jenkins
+            port:
+              number: 8080
