@@ -97,7 +97,7 @@ spec:
         - name: JAVA_OPTS
           value: -Xmx$(LIMITS_MEMORY)m -XshowSettings:vm -Dhudson.slaves.NodeProvisioner.initialDelay=0 -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85 -Duser.timezone=Asia/Shanghai
       volumes:  
-      - name: jenkins
+      - name: jenkins-home
         persistentVolumeClaim:
           claimName: jenkins
 ---
