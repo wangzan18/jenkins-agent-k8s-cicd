@@ -126,6 +126,7 @@ spec:
     - http:
         paths:
           - path: /*
+            pathType: *
             backend:
               service: 
                 name: jenkins
