@@ -10,7 +10,7 @@
         },
     "EBSOptions": {
         "EBSEnabled": true,
-        "VolumeType": "gp3",
+        "VolumeType": "gp2",
         "VolumeSize": 100
     },
     "AccessPolicies":  "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"*\"},\"Action\":\"es:ESHttp*\",\"Resource\":\"arn:aws:es:eu-west-1:921283538843:domain/${ES_DOMAIN_NAME}/*\"}]}",
