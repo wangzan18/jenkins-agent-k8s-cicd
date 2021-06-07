@@ -2,7 +2,7 @@
     "DomainName": "${ES_DOMAIN_NAME}",
     "ElasticsearchVersion": "${ES_VERSION}",
     "ElasticsearchClusterConfig": {
-        "InstanceType": "r6.large.elasticsearch",
+        "InstanceType": "r6g.large.elasticsearch",
         "InstanceCount": 1,
             "DedicatedMasterEnabled": false,
             "ZoneAwarenessEnabled": false,
